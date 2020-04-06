@@ -4,6 +4,29 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+let glyphStates = {
+  "♡": "♥",
+  "♥": "♡"
+}
+
+let articleHearts = documentQuerySelector(".like")
+
+function likeCallback(event) {
+  let heart = event.target
+  mimicServerCall("bogusUrl")
+    .then(function(serverMessage){
+      heart.innerTesxt = glyphStates[heart.innerText]
+      heart.style.color = colorStates[heart.style.color]
+    })
+    .catch(function(error){
+      document.getElementById("modal").className = ""
+    })
+
+    for (let of glyph of articleHearts) {
+      glyph.addEventListener("click", likeCallback)
+    }
+}
+
 
 
 
